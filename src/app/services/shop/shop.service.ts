@@ -18,7 +18,7 @@ export class ShopService {
     return of(mockProducts);
   }
 
-  getProductById(id: number ): Product {
+  getProductById(id: number ): Observable<Product> {
     return this.getProducts().pipe(
       map((products: Product[]) => products.find(product => product.id === +id))
     );
