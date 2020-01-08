@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Product } from '../../models/shop/product';
 import { mockProducts } from './mock/mockProducts';
@@ -15,6 +16,12 @@ export class ShopService {
 
   getProducts(): Observable<Product[]> {
     return of(mockProducts);
+  }
+
+  getProductById(id: number ): Product {
+    return this.getProducts().pipe(
+      map((products: Product[]) => products.find(product => product.id === +id))
+    );
   }
 
   getCartItems(): Observable<number> {
