@@ -3,14 +3,16 @@ import { Observable, of, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Product } from '../../models/shop/product';
+import { CartList } from '../../models/shop/cartList';
+
 import { mockProducts } from './mock/mockProducts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShopService {
-  private cartItemsNbr = 0;
-  private cartItems: Subject<number> = new Subject<number>();
+  private cartList = new CartList();
+  private cartListSubject: Subject<CartList> = new Subject<CartList>();
 
   constructor() { }
 
@@ -18,18 +20,18 @@ export class ShopService {
     return of(mockProducts);
   }
 
-  getProductById(id: number ): Observable<Product> {
+  getProductById(id: number): Observable<Product> {
     return this.getProducts().pipe(
       map((products: Product[]) => products.find(product => product.id === +id))
     );
   }
 
-  getCartItems(): Observable<number> {
-    return this.cartItems.asObservable();
+  getCartList(): Observable<CartList> {
+    return this.cartListSubject.asObservable();
   }
 
-  addCartItem(): void {
-    this.cartItemsNbr++;
-    this.cartItems.next(this.cartItemsNbr);
+  addCartItem(product: Product): void {
+    this.cartList.productsList.push(product);
+    this.cartListSubject.next(this.cartList);
   }
 }

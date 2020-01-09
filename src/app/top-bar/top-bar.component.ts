@@ -12,12 +12,13 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 export class TopBarComponent implements OnInit {
   faShoppingCart = faShoppingCart;
   
-  cartItems = 0;
+  cartListNbr = 0;
 
   constructor(private shopService: ShopService) { }
 
   ngOnInit() {
-    this.shopService.getCartItems()
-      .subscribe(cartItems => this.cartItems = cartItems);
+    this.shopService.getCartList()
+      .subscribe(cartList => 
+        this.cartListNbr = cartList.getNbrProducts());
   }
 }
