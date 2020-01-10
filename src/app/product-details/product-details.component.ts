@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     this.product$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.shopService.getProductById(params.get('id')))
+        this.shopService.getProductById(Number(params.get('id'))))
     );
   }
 

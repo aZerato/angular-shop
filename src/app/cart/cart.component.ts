@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ShopService } from '../services/shop/shop.service';
 
+import { CartList } from '../models/shop/cartList';
+
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -11,12 +13,12 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 export class CartComponent implements OnInit {
   faShoppingCart = faShoppingCart;
   
-  cartItems = 0;
+  cartList$ = CartList;
 
   constructor(private shopService: ShopService) { }
 
   ngOnInit() {
-    this.shopService.getCartItems()
-      .subscribe(cartItems => this.cartItems = cartItems);
+    this.shopService.getCartList().subscribe(cartList =>
+      this.cartList$ = cartList);
   }
 }

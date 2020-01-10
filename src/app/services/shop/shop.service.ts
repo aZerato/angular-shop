@@ -20,7 +20,7 @@ export class ShopService {
     return of(mockProducts);
   }
 
-  getProductById(id: number): Observable<Product> {
+  getProductById(id: number | string): Observable<Product> {
     return this.getProducts().pipe(
       map((products: Product[]) => products.find(product => product.id === +id))
     );
