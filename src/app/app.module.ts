@@ -23,7 +23,7 @@ import { ShopService } from './services/shop/shop.service';
     RouterModule.forRoot([
       { 
         path: '', 
-        component: ProductListComponent 
+        component: ProductListComponent
       },
       { 
         path: 'product/:id', 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -7,9 +7,7 @@ import { CartList } from '../../models/shop/cartList';
 
 import { mockProducts } from './mock/mockProducts';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Inject("myTokenName")
 export class ShopService {
   private cartList = new CartList();
   private cartListSubject: Subject<CartList> = new Subject<CartList>();

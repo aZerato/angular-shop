@@ -13,7 +13,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 export class CartComponent implements OnInit {
   faShoppingCart = faShoppingCart;
   
-  cartList$ = CartList;
+  cartList$: CartList;
 
   constructor(private shopService: ShopService) { }
 
