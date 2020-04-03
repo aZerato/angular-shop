@@ -44,6 +44,6 @@ import { ShopService } from './services/shop/shop.service';
     CartComponent
   ],
   bootstrap: [ AppComponent ],
-  providers: [ShopService]
+  providers: [ ShopService ]
 })
 export class AppModule { }

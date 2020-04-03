@@ -17,7 +17,7 @@ export class TopBarComponent implements OnInit {
   constructor(private shopService: ShopService) { }
 
   ngOnInit() {
-    this.shopService.getCartList()
+    this.shopService.getCartListObservable()
       .subscribe(cartList => 
         this.cartListNbr = cartList.getNbrProducts());
   }

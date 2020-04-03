@@ -1,7 +1,7 @@
 <h2>Your cart</h2>
 
 <div class="row"
-    *ngIf="cartList$; else elseBlockCartList">
+    *ngIf="cartList$.getNbrProducts() > 0; else elseBlockCartList">
 
 	<div *ngFor="let product of cartList$.productsList" class="col-md-4">
 		<div class="card">
@@ -26,13 +26,10 @@
 
 			<div class="card-body">
 				<a [title]="product.name + 'details'" 
-           [routerLink]="['product', product.id]"
+           [routerLink]="['/product', product.id]"
            class="card-link">
 					Details
 				</a>
-				<button (click)="addToCart(product)" class="btn btn-outline-primary">
-          Add to cart
-        </button>
 			</div>
 		</div>
 	</div>

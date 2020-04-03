@@ -1,4 +1,4 @@
-import { Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -7,7 +7,6 @@ import { CartList } from '../../models/shop/cartList';
 
 import { mockProducts } from './mock/mockProducts';
 
-@Inject("myTokenName")
 export class ShopService {
   private cartList = new CartList();
   private cartListSubject: Subject<CartList> = new Subject<CartList>();
@@ -24,8 +23,12 @@ export class ShopService {
     );
   }
 
-  getCartList(): Observable<CartList> {
-    return this.cartListSubject.asObservable();
+  getCartList(): CartList {
+    return this.cartList;
+  }
+
+  getCartListObservable(): Observable<CartList> {
+    return this.cartListSubject;
   }
 
   addCartItem(product: Product): void {
